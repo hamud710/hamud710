@@ -1,0 +1,209 @@
+{% load static %}
+
+<!--header area start-->
+<header class="header_area">
+    <!--header top start-->
+    <div class="header_top">
+        <div class="container">
+            <div class="row align-items-center">
+
+                <div class="col-lg-7 col-md-12">
+                    <div class="welcome_text">
+                        <p>Free shipping on all domestic orders with coupon code <span>“Africa”</span></p>
+                    </div>
+                </div>
+                <div class="col-lg-5 col-md-12">
+                    <div class="top_right text-right">
+                        <ul>
+
+                            <li class="top_links"><a href="#">My Account <i class="ion-chevron-down"></i></a>
+                                <ul class="dropdown_links">
+                                    <li><a href="#">Checkout </a></li>
+
+
+                                    <li><a href="#">Shopping Cart</a></li>
+                                    
+                                    {% if user.is_authenticated %}
+                                    <li><a href="#">My Account </a></li>
+                                    <li><a href="{% url 'account_logout' %}">Logout </a></li>
+                                    {% else %}
+                                    <li><a href=" {% url 'account_login' %} ">Login </a></li>
+                                    {% endif %}
+
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--header top start-->
+
+    <!--header middel start-->
+    <div class="header_middel">
+        <div class="container">
+            <div class="row align-items-center">
+
+                <div class="col-lg-5">
+                    <div class="home_contact">
+                        <div class="contact_box">
+                            <label>Location</label>
+                            <p> {{about.Address1}} </p>
+                        </div>
+                        <div class="contact_box">
+                            <label>Call free</label>
+                            <p><a href="tel:{{about.Phone}}">{{about.Phone}}</a></p>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-4">
+                    <div class="logo">
+                        <a href="{% url 'about' %}"><img src="{% static 'assets/img/logo/logo.png' %}" alt=""></a>
+                    </div>
+                </div>
+                <div class="col-lg-5 col-md-7 col-6">
+                    <div class="middel_right">
+                        <div class="search_btn">
+                            <a href="#"><i class="ion-ios-search-strong"></i></a>
+                            <div class="dropdown_search">
+                                <form role="search" id="searchform" action="{% url 'search' %}" method="get">
+                                    <input value="" name="q" type="search" placeholder="Search product...">
+                                    <button type="submit"><i class="ion-ios-search-strong"></i></button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="cart_link">
+                            
+                            
+                            {% if user.is_authenticated %}
+                                <a href="#"><i class="ion-android-cart"></i><span class="cart_text_quantity"> $138.00</span> <i class="fa fa-angle-down"></i></a>
+                                <span class="cart_quantity">5</span>
+                                {% else %}
+                                <a href="#"><i class="ion-android-cart"></i><span class="cart_text_quantity"> $0.00</span> <i class="fa fa-angle-down"></i></a>
+                                <span class="cart_quantity">0</span>
+                            {% endif %}
+                                
+                            <!--mini cart-->
+                            <div class="mini_cart">
+                                <div class="cart_close">
+                                    <div class="cart_text">
+                                        <h3>cart</h3>
+                                    </div>
+                                    <div class="mini_cart_close">
+                                        <a href="javascript:void(0)"><i class="ion-android-close"></i></a>
+                                    </div>
+                                </div>
+
+                                {% if user.is_authenticated %}
+                                <div class="cart_item">
+                                    <div class="cart_img">
+                                        <a href="#"><img src="{% static 'assets/img/s-product/product.jpg' %}" alt=""></a>
+                                    </div>
+                                    <div class="cart_info">
+                                        <a href="#">Letraset animal</a>
+
+                                        <span class="quantity">Qty: 1</span>
+                                        <span class="price_cart">$60.00</span>
+
+                                    </div>
+                                    <div class="cart_remove">
+                                        <a href="#"><i class="ion-android-close"></i></a>
+                                    </div>
+                                </div>  
+                                
+                                <div class="cart_item">
+                                    <div class="cart_img">
+                                        <a href="#"><img src="{% static 'assets/img/s-product/product2.jpg' %}" alt=""></a>
+                                    </div>
+                                    <div class="cart_info">
+                                        <a href="#">Natural passages</a>
+                                        <span class="quantity">Qty: 1</span>
+                                        <span class="price_cart">$69.00</span>
+                                    </div>
+                                    <div class="cart_remove">
+                                        <a href="#"><i class="ion-android-close"></i></a>
+                                    </div>
+                                </div>
+                                <div class="cart_total">
+                                    <span>Subtotal:</span>
+                                    <span>138.00</span>
+                                </div>
+                                <div class="mini_cart_footer">
+                                    <div class="cart_button view_cart">
+                                        <a href="{% url 'cart' %}">View cart</a>
+                                    </div>
+                                    <div class="cart_button checkout">
+                                        <a class="active" href="checkout.html">Checkout</a>
+                                    </div>
+
+                                </div>
+                                {% else %}
+                                <div class="mini_cart_footer">
+                                    <div class="cart_button view_cart">
+                                        <a href="{% url 'account_login' %}">Login</a>
+                                    </div>
+                                    <div class="cart_button checkout">
+                                        <a class="active" href="{% url 'account_signup' %}">SignUp</a>
+                                    </div>
+
+                                </div>
+                                {% endif %}
+
+                               
+                                
+                                
+                                
+
+                            </div>
+                            <!--mini cart end-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--header middel end-->
+
+    <!--header bottom satrt-->
+    <div class="header_bottom sticky-header">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-12">
+                    <div class="main_menu_inner">
+                        <div class="logo_sticky">
+                            <a href=" {% url 'home' %} "><img  src="{% static 'assets/img/logo/logo.png' %}" alt=""></a>
+                            
+                        </div>
+                        <div class="main_menu">
+                            <nav>
+                                <ul>
+
+                                    <li class="active"><a href="{% url 'home' %}">Home </a>
+
+                                    </li>
+                                    <li><a href=" {% url 'shop' %} ">shop </a>
+
+                                    </li>
+                                    <li><a href="#">blog </a>
+                                        
+
+                                    </li>
+                                    
+                                   
+                                        
+
+
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!--header bottom end-->
+</header>
+<!--header area end-->
